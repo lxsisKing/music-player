@@ -6,6 +6,9 @@
     <div class="player_control">
       <control />
     </div>
+    <div class="palyer_progress">
+      <progress-bar />
+    </div>
   </div>
 </template>
 
@@ -13,10 +16,12 @@
 //引入组件Disk
 import Disk from "./Disk.vue";
 import Control from "./Control.vue";
+import ProgressBar from "./ProgressBar.vue";
 export default {
   components: {
     Disk,
-    Control
+    Control,
+    ProgressBar
   }
 };
 </script>

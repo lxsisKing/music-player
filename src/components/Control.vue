@@ -18,13 +18,13 @@ import { mapState } from "vuex";
 import { player } from "../player";
 export default {
   computed: {
-    ...mapState["isPlaying"]
+    ...mapState(["isPlaying"])
   },
   methods: {
     // 控制开始播放和暂停控件
     handlePlay() {
       if (!player.isEmpty) {
-        if (!this.isPlayer) {
+        if (!this.isPlaying) {
           player.play();
         } else {
           player.pause();
@@ -33,13 +33,13 @@ export default {
     },
     // 控制上一首控件
     handlePrev() {
-      if (this.isPlayer) {
+      if (this.isPlaying) {
         player.prev();
       }
     },
     // 控制下一首控件
-    handlenext() {
-      if (player.isPlaying) {
+    handleNext() {
+      if (this.isPlaying) {
         player.next();
       }
     }
@@ -90,6 +90,9 @@ export default {
   margin-top: -10px;
   width: 0;
   height: 0;
+  // 简写属性
+  // border-width  border-style(required)  border-color
+  // 指定边框的颜色应该是透明的
   border: 12px solid transparent;
   border-left-color: #ccc;
   border-top-width: 10px;
@@ -108,19 +111,19 @@ export default {
   border: 0 solid transparent;
   border-width: 0 0 0 6px;
   border-left-color: #ccc;
-  // 透明度
+  // 透明度，0为完全透明
   opacity: 0;
   transform: scale(0);
   transition: all 0.2s ease;
 }
-.control__plaing .play-btn::before {
+.control__playing .play-btn::before {
   border-width: 0 0 0 6px;
   height: 20px;
   left: 5px;
 }
 .control__playing .play-btn::after {
   opacity: 1;
-  transition: scale(1);
+  transform: scale(1);
 }
 .control_btn:hover .play-btn::before {
   border-left-color: white;
